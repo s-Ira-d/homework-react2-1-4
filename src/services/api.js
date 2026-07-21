@@ -16,6 +16,22 @@ export const searchMovies = async query => {
   return response.data.results;
 };
 
+export const getMovieCredits = async movieId => {
+  const response = await api.get(
+    `/movie/${movieId}/credits?api_key=${API_KEY}`
+  );
+
+  return response.data.cast;
+};
+
+export const getMovieReviews = async movieId => {
+  const response = await api.get(
+    `/movie/${movieId}/reviews?api_key=${API_KEY}`
+  );
+
+  return response.data.results;
+};
+
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
 });
