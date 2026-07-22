@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { searchMovies } from '../services/api';
 import { Link } from 'react-router-dom';
+import './Movies.css';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -11,18 +12,23 @@ const Movies = () => {
 
     const data = await searchMovies(query);
     setMovies(data);
+
+    setQuery('');
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="search-form" onSubmit={handleSubmit}>
         <input
+          className="search-input"
           type="text"
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
 
-        <button type="submit">Search</button>
+        <button className="search-button" type="submit">
+          Search
+        </button>
       </form>
 
       <ul>

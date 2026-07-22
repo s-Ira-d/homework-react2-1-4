@@ -10,11 +10,15 @@ const Reviews = () => {
     getMovieReviews(movieId).then(setReviews);
   }, [movieId]);
 
+  if (reviews.length === 0) {
+    return <p>We don't have any reviews for this movie.</p>;
+  }
+
   return (
     <ul>
       {reviews.map(review => (
         <li key={review.id}>
-          <h4>{review.author}</h4>
+          <h4>Author: {review.author}</h4>
           <p>{review.content}</p>
         </li>
       ))}

@@ -1,6 +1,7 @@
 import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieDetails } from '../services/api';
+import './MovieDetails.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -28,12 +29,14 @@ const MovieDetails = () => {
 
   return (
     <>
-      <button onClick={() => navigate(-1)}>Go Back</button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ← Go Back
+      </button>
 
-      <div>
-        <img src={posterUrl} alt={movie.title} />
+      <div className="movie-info">
+        <img className="movie-poster" src={posterUrl} alt={movie.title} />
 
-        <div>
+        <div className="movie-description">
           <h1>
             {movie.title} ({releaseYear})
           </h1>
@@ -52,9 +55,17 @@ const MovieDetails = () => {
 
       <h3>Additional information</h3>
 
-      <Link to="cast">Cast</Link>
-      <br />
-      <Link to="reviews">Reviews</Link>
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
+
+      <hr />
 
       <Outlet />
     </>
